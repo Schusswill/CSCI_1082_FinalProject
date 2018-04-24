@@ -76,7 +76,7 @@ public class driver {
 			}
 		//---------------------------------------------------------------------
 		// black chip	
-			else if(color == true ) {				
+			else if(color == true && king == false ) {				
 				System.out.println("Black: Moving left or right?");
 				Scanner blackLR = new Scanner(System.in);		
 				String blackMove = blackLR.nextLine();
@@ -96,7 +96,7 @@ public class driver {
 		
 		//---------------------------------------------------------
 		// red chip
-			else if(color == false) {				
+			else if(color == false && && king == true) {				
 				System.out.println("Red: Moving left or right?");
 				Scanner redLR = new Scanner(System.in);		
 				String redMove = redLR.nextLine();
