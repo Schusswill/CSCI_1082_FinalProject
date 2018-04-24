@@ -22,6 +22,6 @@ public class Coordinates {
 	public void setLocY(int locY) {
 		this.locY = locY;
 	}
-	
+	//test
 	
 }
