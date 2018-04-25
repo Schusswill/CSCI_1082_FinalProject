@@ -1,21 +1,20 @@
-package checkers;
+package edu.century.checkers;
+
 import java.awt.EventQueue;
-
-
-public class Driver {
-
-	static Piece[][] board = new Piece[][]{
-		{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
-		{null,new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true)},
-		{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
-		{null,null,null,null,null,null,null,null},
-		{null,null,null,null,null,null,null,null},
-		{null,new Piece(false),null,new Piece(false),null,new Piece(false),null,new Piece(false)},
-		{new Piece(false),null,new Piece(false),null,new Piece(false),null,new Piece(false),null},
-		{null,new Piece(false),null,new Piece(false),null,new Piece(false),null,new Piece(false)}
-	};
-	public static void main(String[]args) {
-		EventQueue.invokeLater(new Runnable() {
+import java.lang.NullPointerException;
+import java.util.Scanner;
+public class driver {
+	
+	
+	
+	
+		// -------------------------------------- main
+	public static void main(String arg[]) {
+		
+		
+		whereTo();
+		
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Display frame = new Display();
@@ -24,12 +23,10 @@ public class Driver {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	}
 	
-	public static Piece[][] getBoard(){
-		return board;
+
+		
 	}
-
-}
-
+	
