@@ -6,14 +6,20 @@ import java.util.Scanner;
 public class driver {
 	
 	
-	
+	private Piece[][] myBoard = new Piece[][]{
+	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
+	{null,new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true)},
+	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
+	{null,null,null,null,null,null,null,null},
+	{null,null,null,null,null,null,null,null},
+	{null,new Piece(false),null,new Piece(false),null,new Piece(false),null,new Piece(false)},
+	{new Piece(false),null,new Piece(false),null,new Piece(false),null,new Piece(false),null},
+	{null,new Piece(false),null,new Piece(false),null,new Piece(false),null,new Piece(false)}};
 	
 		// -------------------------------------- main
 	public static void main(String arg[]) {
 		
-		
-		whereTo();
-		
+		Display display = new Dispay();
 		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
