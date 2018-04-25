@@ -73,25 +73,45 @@ public class Display extends JFrame	{
 		Piece[][] myBoard = Driver.getBoard();
 		ImageIcon imageBlack = new ImageIcon("Images\\BlackPiece.png");
 		ImageIcon imageRed = new ImageIcon("Images\\RedPiece.png");
+		ImageIcon imageKingedRed = new ImageIcon("Images\\kingedRed.png");
+		ImageIcon imageKingedBlack = new ImageIcon("Images\\KingedBlack.png");
 		int index = 0;
 		for(int x = 0; x < 8;x++) {
 			for(int y = 0; y < 8; y++) {
-				if(myBoard[x][y] == null) {
-					spaces[index].setBackground(Color.WHITE);
-					spaces[index].setIcon(null);
-					
-					index++;
-				}
-				else if (myBoard[x][y].getColor()) {
-					spaces[index].setIcon(imageBlack);
-					
-					index++;
-				}
-				else if (!(myBoard[x][y].getColor())) {
-					spaces[index].setIcon(imageRed);
-					
-					index++;
-					
+				if(myBoard[x][y].getKinged()) {
+					if(myBoard[x][y] == null) {
+						spaces[index].setBackground(Color.WHITE);
+						spaces[index].setIcon(null);
+						
+						index++;
+					}
+					else if (myBoard[x][y].getColor()) {
+						spaces[index].setIcon(imageKingedBlack);
+						
+						index++;
+					}
+					else if (!(myBoard[x][y].getColor())) {
+						spaces[index].setIcon(imageKingedRed);
+						
+						index++
+				}else {
+					if(myBoard[x][y] == null) {
+						spaces[index].setBackground(Color.WHITE);
+						spaces[index].setIcon(null);
+						
+						index++;
+					}
+					else if (myBoard[x][y].getColor()) {
+						spaces[index].setIcon(imageBlack);
+						
+						index++;
+					}
+					else if (!(myBoard[x][y].getColor())) {
+						spaces[index].setIcon(imageRed);
+						
+						index++;
+						
+					}
 				}
 			}
 		}
