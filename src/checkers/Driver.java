@@ -23,6 +23,10 @@ public class Driver {
 				try {
 					Display frame = new Display();
 					frame.setVisible(true);
+					
+					//add in the turn stuff here
+					
+					frame.update();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
