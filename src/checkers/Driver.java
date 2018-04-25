@@ -1,12 +1,11 @@
-package edu.century.checkers;
+package checkers;
 
 import java.awt.EventQueue;
-import java.lang.NullPointerException;
-import java.util.Scanner;
-public class driver {
+
+public class Driver {
 	
 	
-	private Piece[][] myBoard = new Piece[][]{
+	private static Piece[][] board = new Piece[][]{
 	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
 	{null,new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true)},
 	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
@@ -19,8 +18,7 @@ public class driver {
 		// -------------------------------------- main
 	public static void main(String arg[]) {
 		
-		Display display = new Dispay();
-		/*EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Display frame = new Display();
@@ -29,9 +27,13 @@ public class driver {
 					e.printStackTrace();
 				}
 			}
-		});*/
+		});
 	}
 	
+	
+	public static Piece[][] getBoard(){
+		return board;
+	}
 
 		
 	}

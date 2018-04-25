@@ -71,21 +71,22 @@ public class Display extends JFrame	{
 //	}
 	public void update() {
 		Piece[][] myBoard = Driver.getBoard();
-		ImageIcon imageBlack = new ImageIcon("Images\\BlackPiece.png");
-		ImageIcon imageRed = new ImageIcon("Images\\RedPiece.png");
-		ImageIcon imageKingedRed = new ImageIcon("Images\\kingedRed.png");
-		ImageIcon imageKingedBlack = new ImageIcon("Images\\KingedBlack.png");
+		ImageIcon imageBlack = new ImageIcon("SRC\\Images\\BlackPiece.png");
+		ImageIcon imageRed = new ImageIcon("SRC\\Images\\RedPiece.png");
+		ImageIcon imageKingedRed = new ImageIcon("SRC\\Images\\kingedRed.png");
+		ImageIcon imageKingedBlack = new ImageIcon("SRC\\Images\\KingedBlack.png");
 		int index = 0;
 		for(int x = 0; x < 8;x++) {
 			for(int y = 0; y < 8; y++) {
-				if(myBoard[x][y].getKinged()) {
-					if(myBoard[x][y] == null) {
-						spaces[index].setBackground(Color.WHITE);
-						spaces[index].setIcon(null);
-						
-						index++;
-					}
-					else if (myBoard[x][y].getColor()) {
+				if(myBoard[x][y] == null) {
+					spaces[index].setBackground(Color.WHITE);
+					spaces[index].setIcon(null);
+					
+					index++;
+				} 
+				else if(myBoard[x][y].getKinged()) {
+					
+					if (myBoard[x][y].getColor()) {
 						spaces[index].setIcon(imageKingedBlack);
 						
 						index++;
@@ -93,15 +94,12 @@ public class Display extends JFrame	{
 					else if (!(myBoard[x][y].getColor())) {
 						spaces[index].setIcon(imageKingedRed);
 						
-						index++
-				}else {
-					if(myBoard[x][y] == null) {
-						spaces[index].setBackground(Color.WHITE);
-						spaces[index].setIcon(null);
-						
 						index++;
-					}
-					else if (myBoard[x][y].getColor()) {
+						}
+					
+				}else {
+					
+					if (myBoard[x][y].getColor()) {
 						spaces[index].setIcon(imageBlack);
 						
 						index++;
@@ -110,7 +108,6 @@ public class Display extends JFrame	{
 						spaces[index].setIcon(imageRed);
 						
 						index++;
-						
 					}
 				}
 			}

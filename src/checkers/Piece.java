@@ -1,5 +1,7 @@
 package checkers;
 
+import java.util.Scanner;
+
 import checkers.Coordinates;
 
 public class Piece{
@@ -115,11 +117,12 @@ public class Piece{
 						int tempY = locY + 1;
 						System.out.println("I am Black, moved forward left.");
 					}
+					blackLR.close();
 			}
 		
 		//---------------------------------------------------------
 		// red chip
-			else if(color == false && && king == true) {				
+			else if(color == false && king == true) {				
 				System.out.println("Red: Moving left or right?");
 				Scanner redLR = new Scanner(System.in);		
 				String redMove = redLR.nextLine();
