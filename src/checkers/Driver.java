@@ -22,15 +22,15 @@ public class Driver {
 	public static void main(String arg[]) {
 		DisplayThread t1 = new DisplayThread();
 		t1.start();
-				
-		while(game){
-			boolean turn = true;
 			
+		boolean turn = true;
+		while(game){
+						
 			if (turn) {
-				redTurn();
+				blackTurn();
 			}
 			else {
-				blackTurn();
+				redTurn();
 			}
 			if(turn) {
 				turn = false;
