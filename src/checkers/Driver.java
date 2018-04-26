@@ -55,15 +55,9 @@ public class Driver {
 	
 	private static void blackTurn() {
 		//TODO
-		Scanner tempInput = new Scanner(System.in);
 		System.out.print("It is black's turn \nSelect a piece to move:");
-		int locX = tempInput.nextInt();
-		int locY = tempInput.nextInt();
-		Coordinates origin = new Coordinates(locX,locY);
-		board[locX][locY].move(origin);
-		
-		
-		tempInput.close();
+		Coordinates origin = new Coordinates(0,3);
+		board[0][3].move(origin);
 	}
 
 
@@ -73,10 +67,8 @@ public class Driver {
 		Scanner tempInput = new Scanner(System.in);
 		System.out.print("It is red's turn \nSelect a piece to move:");
 //		tempInput.nextLine();
-		int locX = tempInput.nextInt();
-		int locY = tempInput.nextInt();
-		Coordinates origin = new Coordinates(locX,locY);
-		board[locX][locY].move(origin);
+		Coordinates origin = new Coordinates(7,5);
+		board[7][5].move(origin);
 		
 		
 		tempInput.close();
