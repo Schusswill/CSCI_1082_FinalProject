@@ -34,6 +34,7 @@ public class Piece{
 	}
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//=========================================================================================
 		
 		private static int blackChipCounter = 0;
@@ -45,6 +46,14 @@ public class Piece{
 		Scanner keyX = new Scanner(System.in);		
 		int locX = keyX.nextInt();
 		
+=======
+	private void whereTo() {
+		
+		System.out.println("Enter the X coordinate of the piece you want to move:");
+		Scanner keyX = new Scanner(System.in);		
+		int locX = keyX.nextInt();
+		
+>>>>>>> parent of db203ba... tryed to implement theads
 		System.out.println("Enter the Y coordinate of the piece you want to move:");
 		Scanner keyY = new Scanner(System.in);		
 		int locY = keyY.nextInt();
@@ -134,6 +143,9 @@ public class Piece{
 						int tempX = locX - 1;		// red moves left
 						int tempY = locY + 1;
 						System.out.println("I am Red, moved forward left.");
+<<<<<<< HEAD
+>>>>>>> parent of db203ba... tryed to implement theads
+=======
 >>>>>>> parent of db203ba... tryed to implement theads
 					}
 				}
