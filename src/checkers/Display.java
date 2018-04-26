@@ -31,7 +31,7 @@ public class Display extends JFrame	{
 	JTextArea textOut;
 	
 	public Display() {
-		super("Chekers");
+		super("Checkers");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600,800);
 		boardPane = new JPanel();
