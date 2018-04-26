@@ -16,10 +16,6 @@ public class Piece{
 		this.kinged = false;
 	}
 	
-	public boolean move(Coordinates origin) {
-		//TODO this is a place holder
-		return false;
-	}
 	
 	public boolean getColor() {
 		return color;
@@ -31,15 +27,10 @@ public class Piece{
 		this.kinged = kinged;
 	}
 	
-	private void whereTo() {
+	public void move(Coordinates origin) {
 		
-		System.out.println("Enter the X coordinate of the piece you want to move:");
-		Scanner keyX = new Scanner(System.in);		
-		int locX = keyX.nextInt();
-		
-		System.out.println("Enter the Y coordinate of the piece you want to move:");
-		Scanner keyY = new Scanner(System.in);		
-		int locY = keyY.nextInt();
+		int locX = origin.getLocX();
+		int locY = origin.getLocY();
 		Boolean color = true;
 		Boolean king = false;
 
@@ -137,6 +128,7 @@ public class Piece{
 						int tempX = locX - 1;		// red moves left
 						int tempY = locY + 1;
 						System.out.println("I am Red, moved forward left.");
+						
 					}
 			}
 	}
