@@ -1,7 +1,6 @@
 package checkers;
 
 import java.awt.EventQueue;
-import java.util.Scanner;
 
 public class Driver {
 	
@@ -46,8 +45,13 @@ public class Driver {
 							turn = true;
 						}
 						
+<<<<<<< HEAD
 						if (redCount == 9 || blackCount == 9) {
 							System.out.println("Game over.");
+=======
+						if (redCount == 9 || blackCount ==9) {
+							System.out.println("Game over");
+>>>>>>> parent of db203ba... tryed to implement theads
 							//TODO 
 							game = false;
 						}
@@ -58,6 +62,7 @@ public class Driver {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+<<<<<<< HEAD
 			}
 
 		});
@@ -84,6 +89,27 @@ public class Driver {
 		tempInput.close();
 		}
 
+=======
+			}
+
+			private void redTurn() {
+				// TODO Auto-generated method stub
+				//get input peice to be moved
+				//board[x][y].move(origin);
+				
+				
+			}
+
+			private void blackTurn() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	
+	
+>>>>>>> parent of db203ba... tryed to implement theads
 	public static Piece[][] getBoard(){
 		return board;
 	}

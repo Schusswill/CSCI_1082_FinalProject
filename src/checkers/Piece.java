@@ -33,10 +33,25 @@ public class Piece{
 		this.kinged = kinged;
 	}
 	
+<<<<<<< HEAD
 	//=========================================================================================
 		
 		private static int blackChipCounter = 0;
 		private static int redChipCounter = 0;
+=======
+	private void whereTo() {
+		
+		System.out.println("Enter the X coordinate of the piece you want to move:");
+		Scanner keyX = new Scanner(System.in);		
+		int locX = keyX.nextInt();
+		
+		System.out.println("Enter the Y coordinate of the piece you want to move:");
+		Scanner keyY = new Scanner(System.in);		
+		int locY = keyY.nextInt();
+		Boolean color = true;
+		Boolean king = false;
+
+>>>>>>> parent of db203ba... tryed to implement theads
 		
 		public void whereTo() {
 		
@@ -101,6 +116,7 @@ public class Piece{
 						myBoard[locX][locY] = null;
 						System.out.println("King, Red, moved forward left.");
 					}
+<<<<<<< HEAD
 					else if(kingRedMove.equals("back right")) {	// moves back right
 						int tempX = locX + 1;
 						int tempY = locY - 1;
@@ -112,6 +128,13 @@ public class Piece{
 						int tempY = locY - 1;
 						myBoard[locX][locY] = null;
 						System.out.println("King, Red, moved backwards right.");
+=======
+					
+					else {
+						int tempX = locX - 1;		// red moves left
+						int tempY = locY + 1;
+						System.out.println("I am Red, moved forward left.");
+>>>>>>> parent of db203ba... tryed to implement theads
 					}
 				}
 			
