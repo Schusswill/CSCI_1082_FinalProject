@@ -45,8 +45,8 @@ public class Driver {
 							turn = true;
 						}
 						
-						if (redCount == 9 || blackCount ==9) {
-							System.out.println("Game over");
+						if (redCount == 9 || blackCount == 9) {
+							System.out.println("Game over.");
 							//TODO 
 							game = false;
 						}
@@ -74,8 +74,7 @@ public class Driver {
 		});
 	}
 	
-	
-	
+
 	public static Piece[][] getBoard(){
 		return board;
 	}
