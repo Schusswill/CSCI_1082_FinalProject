@@ -35,6 +35,7 @@ public class Piece{
 		private static int redChipCounter = 0;
 		
 		public void whereTo() {
+		public void move(Coordinates origin) {
 		
 		int locX = origin.getLocX();
 		int locY = origin.getLocY();
