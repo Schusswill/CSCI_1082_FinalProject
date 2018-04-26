@@ -24,8 +24,52 @@ public class Driver {
 		// -------------------------------------- main
 	public static void main(String arg[]) {
 		
+<<<<<<< HEAD
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Display frame = new Display();
+					frame.setVisible(true);
+					
+					while(game){
+						boolean turn = true;
+						
+						if (turn) {
+							redTurn();
+						}
+						else {
+							blackTurn();
+						}
+						if(turn) {
+							turn = false;
+						}
+						else {
+							turn = true;
+						}
+						
+						if (redCount == 9 || blackCount == 9) {
+							System.out.println("Game over.");
+							//TODO 
+							game = false;
+						}
+					}
+							
+					
+					frame.update();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
+			private void redTurn() {
+				// TODO Auto-generated method stub
+				//get input peice to be moved
+				//board[x][y].move(origin);
+				
+=======
 		DisplayThread t1 = new DisplayThread();
 		t1.start();
+>>>>>>> db203bad440b793b6699dd235a82b25403f1b658
 				
 		while(game){
 			boolean turn = true;
@@ -52,6 +96,8 @@ public class Driver {
 		
 	}
 	
+<<<<<<< HEAD
+=======
 	
 	private static void blackTurn() {
 		//TODO
@@ -74,6 +120,7 @@ public class Driver {
 		tempInput.close();
 		}
 
+>>>>>>> db203bad440b793b6699dd235a82b25403f1b658
 
 	public static Piece[][] getBoard(){
 		return board;
