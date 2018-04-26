@@ -1,6 +1,9 @@
 package checkers;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
@@ -24,15 +27,16 @@ public class Display extends JFrame	{
 	private JPanel contentPane;
 	private JPanel boardPane;
 	private JLabel[] spaces = new JLabel[64];
+	private JTextField inputText = new JTextField();
 	JTextArea textOut;
 	
 	public Display() {
 		super("Chekers");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(800,1200);
+		setSize(600,800);
 		boardPane = new JPanel();
 		contentPane = new JPanel();
-		contentPane.setLayout(new GridLayout(2,1,0,0));
+		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		setContentPane(contentPane);
 		JPanel spacer = new JPanel();
 		contentPane.add(spacer);
@@ -42,9 +46,25 @@ public class Display extends JFrame	{
 		spacer.add(boardPane);
 		boardPane.setLayout(new GridLayout(8,8));
 		
+		JPanel controllPanel = new JPanel();
+		contentPane.add(controllPanel, BorderLayout.SOUTH);
+		controllPanel.setLayout(new BorderLayout());
 		textOut = new JTextArea();
+		textOut.setEditable(false);
+		textOut.setSize(600,400);
 		textOut.setBackground(Color.BLACK);
-		contentPane.add(new JScrollPane(textOut, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.SOUTH);
+		textOut.setForeground(Color.white);
+		JScrollPane scrollableTextOut = new JScrollPane(textOut, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		controllPanel.add(scrollableTextOut, BorderLayout.CENTER);
+		JPanel inputPanel = new JPanel();
+		controllPanel.add(inputPanel, BorderLayout.SOUTH);
+		inputPanel.add(inputText);
+		inputText.setColumns(30);
+		inputText.addActionListener(new EnterListener());
+		JButton enterButton = new JButton("Enter");
+		enterButton.addActionListener(new EnterListener());
+		inputPanel.add(enterButton);
+		
 		
 		
 		for(int i = 0; i < 64; i++) {
@@ -55,20 +75,18 @@ public class Display extends JFrame	{
 		update();
 	}
 	
-//	public void paint(Graphics g) {
-//		g.fillRect(100, 100, 400, 400);
-//		for(int i = 100; i<= 400; i +=100) {
-//			for (int j = 100; j <= 400; j+=100) {
-//				g.clearRect(i, j, 50, 50);
-//			}
-//			
-//		}
-//		for(int i = 150; i <= 450; i +=100) {
-//			for(int j = 150; j<= 450; j +=100) {
-//				g.clearRect(i, j, 50, 50);
-//			}
-//		}
-//	}
+	private class EnterListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			textOut.append("Test\n");
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+
+	
 	public void update() {
 		Piece[][] myBoard = Driver.getBoard();
 		ImageIcon imageBlack = new ImageIcon("SRC\\Images\\BlackPiece.png");
