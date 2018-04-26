@@ -24,7 +24,6 @@ public class Driver {
 		// -------------------------------------- main
 	public static void main(String arg[]) {
 		
-<<<<<<< HEAD
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -61,43 +60,8 @@ public class Driver {
 				}
 			}
 
-			private void redTurn() {
-				// TODO Auto-generated method stub
-				//get input peice to be moved
-				//board[x][y].move(origin);
-				
-=======
-		DisplayThread t1 = new DisplayThread();
-		t1.start();
->>>>>>> db203bad440b793b6699dd235a82b25403f1b658
-				
-		while(game){
-			boolean turn = true;
-			
-			if (turn) {
-				redTurn();
-			}
-			else {
-				blackTurn();
-			}
-			if(turn) {
-				turn = false;
-			}
-			else {
-				turn = true;
-			}
-			
-			if (redCount == 9 || blackCount ==9) {
-				System.out.println("Game over");
-				//TODO 
-				game = false;
-			}
-		}
-		
+		});
 	}
-	
-<<<<<<< HEAD
-=======
 	
 	private static void blackTurn() {
 		//TODO
@@ -120,8 +84,6 @@ public class Driver {
 		tempInput.close();
 		}
 
->>>>>>> db203bad440b793b6699dd235a82b25403f1b658
-
 	public static Piece[][] getBoard(){
 		return board;
 	}
@@ -133,37 +95,5 @@ public class Driver {
 	public static void blackCaptureCnt() {
 		blackCount++;
 	}
-	
-	static class DisplayThread implements Runnable{
-
-		private Thread t;
-		DisplayThread(){
-			
-		}
-		@Override
-		public void run() {
-			try {
-				Display frame = new Display();
-				frame.setVisible(true);
-				frame.update();
-				while(game) {
-					Thread.sleep(1);
-					frame.update();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();			
-			}
-		
-		}
-
-		public void start() {
-			if (t == null) {
-				t = new Thread (this);
-				t.start();
-			}
-			
-		}
-	}
-	
 }
 	
