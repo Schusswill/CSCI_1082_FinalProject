@@ -16,7 +16,6 @@ public class Piece{
 		this.kinged = false;
 	}
 	
-	
 	public boolean getColor() {
 		return color;
 	}
@@ -29,25 +28,21 @@ public class Piece{
 		this.kinged = kinged;
 	}
 	
-<<<<<<< HEAD
+
 	//=========================================================================================
 		
 		private static int blackChipCounter = 0;
 		private static int redChipCounter = 0;
 		
 		public void whereTo() {
-=======
-	public void move(Coordinates origin) {
 		
 		int locX = origin.getLocX();
 		int locY = origin.getLocY();
 		Boolean color = true;
 		Boolean king = false;
 
->>>>>>> db203bad440b793b6699dd235a82b25403f1b658
-		
 			Piece[][] myBoard = Driver.getBoard();
-			System.out.println("Enter the X coordinate of the piece you want to move:");
+		/*	System.out.println("Enter the X coordinate of the piece you want to move:");
 			Scanner keyX = new Scanner(System.in);		
 			int locX = keyX.nextInt();
 			
@@ -57,7 +52,7 @@ public class Piece{
 			
 			Boolean color = true;
 			Boolean king = false;
-		
+		*/
 			
 			//black King
 			if (color == true && king == true) {	
@@ -107,7 +102,7 @@ public class Piece{
 						myBoard[locX][locY] = null;
 						System.out.println("King, Red, moved forward left.");
 					}
-<<<<<<< HEAD
+
 					else if(kingRedMove.equals("back right")) {	// moves back right
 						int tempX = locX + 1;
 						int tempY = locY - 1;
@@ -119,14 +114,13 @@ public class Piece{
 						int tempY = locY - 1;
 						myBoard[locX][locY] = null;
 						System.out.println("King, Red, moved backwards right.");
-=======
+					}
 					
 					else {
 						int tempX = locX - 1;		// red moves left
 						int tempY = locY + 1;
 						System.out.println("I am Red, moved forward left.");
 						
->>>>>>> db203bad440b793b6699dd235a82b25403f1b658
 					}
 				}
 			
@@ -195,6 +189,7 @@ public class Piece{
 					Scanner redWhereTo = new Scanner(System.in);		
 					String redMove = redWhereTo.nextLine();
 					
+			
 					if(redMove.equals("right")) {	
 							if (myBoard [locX +1][locY +1].getColor() == true) {
 								redChipCounter = redChipCounter + 1; // check if chip is black - remove icon from myboard GUI??
