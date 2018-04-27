@@ -27,10 +27,10 @@ public class Driver {
 			boolean turn = true;
 			
 			if (turn) {
-				redTurn();
+				blackTurn();
 			}
 			else {
-				blackTurn();
+				redTurn();
 			}
 			if(turn) {
 				turn = false;
@@ -48,13 +48,13 @@ public class Driver {
 		
 	}
 		
-
 	
 	private static void blackTurn() {
 		//TODO
 		System.out.print("It is black's turn \nSelect a piece to move:");
-		Coordinates origin = new Coordinates(0,3);
-		board[0][3].move(origin);
+		Coordinates origin = new Coordinates(0,4);
+		board[0][4].move(origin);
+		
 	}
 
 

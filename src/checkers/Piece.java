@@ -27,17 +27,13 @@ public class Piece{
 	public void setKinged(boolean kinged) {
 		this.kinged = kinged;
 	}
-	
 
 	//=========================================================================================
 		
-		private static int blackChipCounter = 0;
-		private static int redChipCounter = 0;
-		
-
+	private static int blackChipCounter = 0;
+	private static int redChipCounter = 0;
 
 		public void move(Coordinates origin) {
-
 		
 		int locX = origin.getLocX();
 		int locY = origin.getLocY();
@@ -58,6 +54,8 @@ public class Piece{
 		*/
 			
 			//black King
+		
+		{
 			if (color == true && king == true) {	
 				System.out.println("Black King: moving left, right, back left, or back right?");
 				Scanner kingBlackWhereTo = new Scanner(System.in);		
@@ -93,7 +91,7 @@ public class Piece{
 				else if(color == false && king == true) {	
 					System.out.println("Red King: moving left, right, back left, or back right?");
 					Scanner kingRedWhereTo = new Scanner(System.in);		
-					String kingRedMove = kingRedWhereTo.nextLine();		// prompt user for left, right, back left, back right - STRING or CHAR??
+					String kingRedMove = kingRedWhereTo.nextLine();		
 					
 					if(kingRedMove.equals("right")) {			// moves right			
 					
@@ -129,125 +127,152 @@ public class Piece{
 			
 		//---------------------------------------------------------------------
 			// black chip	
+				
 				else if(color == true && king == false ) {				
 					System.out.println("Black: Moving left or right?");
 					Scanner blackWhereTo = new Scanner(System.in);		
 					String blackMove = blackWhereTo.nextLine();
 				
-						if(blackMove.equals("right")) {	// black moves right
-							if (myBoard [locX +1][locY +1].getColor() == false) {
-								blackChipCounter = blackChipCounter + 1; // check if chip is red - remove icon from myboard GUI??
-								int tempX = locX + 2;
+	/*RIGHT*/		if(blackMove.equals("right")) {						// black moves right
+						if (!(myBoard[locX + 1][locY + 1] == null)) {	// checks if spot is not null
+							if (myBoard [locX + 1][locY +1].getColor() == false) {	// not null; get the color & capture red chip
+								blackChipCounter = blackChipCounter + 1; // capture red chip - Add 1 to Black Counter
+								int tempX = locX + 2;					// change locations to new locations
 								int tempY = locY + 2;
-								myBoard[locX][locY] = null;
-								if (tempX == 7) {
+								myBoard[locX][locY] = null;				// set old location to null
+								if (tempX == 7) {						// checks if righ move can be made King reference Loc X
 									System.out.println("Black chip has been Kinged.");
 									setKinged(true);
 								}
 								System.out.println("Black: Captured red chip and moved forward right.");
+								}
 							}
-							
-							else {
-								int tempX = locX + 1;
+						}
+				}
+				
+							else {												
+								if (myBoard[locX + 1][locY + 1] == null) {	// checks if spot is null
+								int tempX = locX + 1;						// change locations to new locations
 								int tempY = locY + 1;
-								myBoard[locX][locY] = null;
-								if (tempX == 7) {
+								myBoard[locX][locY] = null;					// set old location to null
+								if (tempX == 7) {							// checks if right move can be made King reference Loc X
 									System.out.println("Black chip has been Kinged.");
 									setKinged(true);
 								}
 								System.out.println("Black: moved forward right.");
 								}
 							}
-						
-						else {	// black moves left
-							if (myBoard [locX -1][locY +1].getColor() == false) {
-								blackChipCounter = blackChipCounter + 1; // check if chip is red - remove icon from myboard GUI??
-								int tempX = locX - 2;
+							
+		/*LEFT*/
+								if (myBoard [locX -1][locY +1].getColor() == false) {	// check if chip is red 
+								blackChipCounter = blackChipCounter + 1; 			// add to the Black chip counter 
+								int tempX = locX - 2;								// change location to new location
 								int tempY = locY + 2;
-								myBoard[locX][locY] = null;
-								if (tempX == 7) {
+								myBoard[locX][locY] = null;							// set old location to null
+								if (tempX == 7) {						// check if left move is a possible king
 									System.out.println("Black chip has been Kinged.");
 									setKinged(true);
 								}
 								System.out.println("Black: Captured red chip and moved forward left.");
-							}
-							
+								}
+						
 							else {
-								int tempX = locX - 1;	
+								if (myBoard[locX - 1][locY +1] == null) {	// checks if spot is null
+								int tempX = locX - 1;						// change location to new locations
 								int tempY = locY + 1;
-								myBoard[locX][locY] = null;
-								if (tempX == 7) {
+								myBoard[locX][locY] = null;					// set old location to null
+								if (tempX == 7) {							// checks if left move is King  reference Loc X
 									System.out.println("Black chip has been Kinged.");
 									setKinged(true);
 								}
 								System.out.println("Black: moved forward left.");
-								}
 							}
-				}
+							}
+	
 			
 		//---------------------------------------------------------
 			// red chip
-				else if(color == false && king == false) {				
-					System.out.println("Red: Moving left or right?");
-					Scanner redWhereTo = new Scanner(System.in);		
-					String redMove = redWhereTo.nextLine();
-					
+				
+			if(color == false && king == false ) {				
+				System.out.println("Red: Moving left or right?");
+				Scanner redWhereTo = new Scanner(System.in);		
+				String redMove = redWhereTo.nextLine();
 			
-					if(redMove.equals("right")) {	
-							if (myBoard [locX +1][locY +1].getColor() == true) {
-								redChipCounter = redChipCounter + 1; // check if chip is black - remove icon from myboard GUI??
-								int tempX = locX + 2;
-								int tempY = locY + 2;
-								myBoard[locX][locY] = null;
-								if (tempX == 0) {
-									System.out.println("Red chip has been Kinged.");
-									setKinged(true);
-								}
-								System.out.println("Red: Captured black chip and moved forward right.");
+/*RIGHT*/		if(redMove.equals("right")) {						// red moves right
+					if (!(myBoard[locX - 1][locY +1] == null)) {	// checks if spot is not null
+						if (myBoard [locX -1][locY +1].getColor() == true) {	// not null; get the color & capture red chip
+							redChipCounter = redChipCounter + 1; // capture red chip - Add 1 to Red Counter
+							int tempX = locX - 2;					// change locations to new locations
+							int tempY = locY + 2;
+							myBoard[locX][locY] = null;				// set old location to null
+							if (tempX == 7) {						// checks if righ move can be made King reference Loc X
+								System.out.println("Red chip has been Kinged.");
+								setKinged(true);
 							}
-							
-						else {
-								int tempX = locX + 1;
-								int tempY = locY + 1;
-								myBoard[locX][locY] = null;
-								if (tempX == 0) {
-									System.out.println("Red chip has been Kinged.");
-									setKinged(true);
-								}
-								System.out.println("Red: moved forward right.");
-								
-							}
+							System.out.println("Red: Captured red chip and moved forward right.");
 						}
-						else {	// red chip moves left
-							if (myBoard [locX -1][locY +1].getColor() == true) {
-								redChipCounter = redChipCounter + 1; // check if chip is black - remove icon from myboard GUI??
-								int tempX = locX - 2;
-								int tempY = locY + 2;
-								myBoard[locX][locY] = null;
-								if (tempX == 0) {
-									System.out.println("Red chip has been Kinged.");
-									setKinged(true);
-								}
-								System.out.println("Red: Captured black chip and moved forward left.");
-							}
-							
-								else {
-									int tempX = locX - 1;		// red moves left
-									int tempY = locY + 1;
-									myBoard[locX][locY] = null;
-									System.out.println("Red: moved forward left.");
-									}
-								}
-							}
+					}
+				}
 			
-			// detects for potential winner every round	
-						Driver.redCaptureCnt();
-						Driver.blackCaptureCnt();
-		
+						else {												
+							if (myBoard[locX - 1][locY +1] == null) {	// checks if spot is null
+							int tempX = locX  -1;						// change locations to new locations
+							int tempY = locY + 1;
+							myBoard[locX][locY] = null;					// set old location to null
+							if (tempX == 7) {							// checks if right move can be made King reference Loc X
+								System.out.println("Red chip has been Kinged.");
+								setKinged(true);
+							}
+							System.out.println("Black: moved forward right.");
+						}
+						}
+							
+	/*LEFT*/			
+						if (myBoard [locX -1][locY -1].getColor() == true) {	// check if chip is black
+							redChipCounter = redChipCounter + 1; 			// add to the red chip counter 
+							int tempX = locX - 2;								// change location to new location
+							int tempY = locY - 2;
+							myBoard[locX][locY] = null;							// set old location to null
+							if (tempX == 7) {						// check if left move is a possible king
+								System.out.println("Red chip has been Kinged.");
+								setKinged(true);
+							}
+							System.out.println("Red: Captured red chip and moved forward left.");
+						}
+					
+						else {
+							if (myBoard[locX - 1][locY -1] == null) {	// checks if spot is null
+							int tempX = locX - 1;						// change location to new locations
+							int tempY = locY - 1;
+							myBoard[locX][locY] = null;					// set old location to null
+							if (tempX == 7) {							// checks if left move is King  reference Loc X
+								System.out.println("Red chip has been Kinged.");
+								setKinged(true);
+							}
+							System.out.println("Red: moved forward left.");
+						}
+					}
 			}
+		}
+		}
 }
-// King moves right
-/*int tempX = locX - 1;
-int tempY = locY + 1;
-myBoard[locX][locY] = null;*/
 
+		
+		
+		
+						
+		
+
+							
+							
+		
+							
+							
+		
+			
+		
+							
+						
+						
+
+			
