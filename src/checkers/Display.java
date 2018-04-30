@@ -3,12 +3,16 @@ package checkers;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.PipedInputStream;
+import java.io.PipedOutputStream;
+import java.io.PrintStream;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
 
-public class Display extends JFrame	{
+public class Display extends JFrame implements  Runnable	{
 
 	/**
 	 * 
@@ -26,9 +30,16 @@ public class Display extends JFrame	{
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel boardPane;
-	private JLabel[] spaces = new JLabel[64];
-	private JTextField inputText = new JTextField();
-	JTextArea textOut;
+	private static JLabel[] spaces = new JLabel[64];
+	private static JTextField inputText = new JTextField();
+	static JTextArea textOut;
+	private  static Object inputWait = new Object();
+	
+	private Thread reader;
+	private Thread reader2;
+	private boolean quit; //used as signal for threads
+	private final PipedInputStream pin = new PipedInputStream();
+	private final PipedInputStream pin2 = new PipedInputStream();
 	
 	public Display() {
 		super("Checkers");
@@ -65,6 +76,31 @@ public class Display extends JFrame	{
 		enterButton.addActionListener(new EnterListener());
 		inputPanel.add(enterButton);
 		
+		//Emulating the console at the bottom of the Screen
+		try {
+			PipedOutputStream pout = new PipedOutputStream(this.pin);
+			System.setOut(new PrintStream(pout,true));
+		}catch(Exception e){
+			textOut.append("couldnt redirect STDOUT");
+		}
+		
+		try { 
+			PipedOutputStream pout2 = new PipedOutputStream(this.pin2);
+			System.setErr(new PrintStream(pout2, true));
+		}catch(Exception e) {
+			textOut.append("couldnt redirect STDERR" + e.getMessage());
+		}
+		
+		//Starting threads to read console;
+		
+		quit = false;
+		reader = new Thread(this);
+		reader.setDaemon(true);
+		reader.start();
+		
+		reader2 = new Thread(this);
+		reader2.setDaemon(true);
+		reader2.start();
 		
 		
 		for(int i = 0; i < 64; i++) {
@@ -79,15 +115,17 @@ public class Display extends JFrame	{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			textOut.append("Test\n");
-			// TODO Auto-generated method stub
-			
+			synchronized(inputWait) {
+				textOut.append(inputText.getText());
+				inputWait.notifyAll();
+				return;
+			}
 		}
 		
 	}
 
 	
-	public void update() {
+	public static void update() {
 		Piece[][] myBoard = Driver.getBoard();
 		ImageIcon imageBlack = new ImageIcon("SRC\\Images\\BlackPiece.png");
 		ImageIcon imageRed = new ImageIcon("SRC\\Images\\RedPiece.png");
@@ -102,7 +140,7 @@ public class Display extends JFrame	{
 					
 					index++;
 				} 
-				else if(myBoard[x][y].getKinged()) {
+				else if(myBoard[x][y] instanceof Kinged) {
 					
 					if (myBoard[x][y].getColor()) {
 						spaces[index].setIcon(imageKingedBlack);
@@ -131,6 +169,69 @@ public class Display extends JFrame	{
 			}
 		}
 	}
+
+
+	@Override
+	public synchronized void run() {
+		try {
+			while (Thread.currentThread() == reader) {
+				try {
+					this.wait(100);
+				}catch(InterruptedException e) {}
+					if (pin.available()!=0) {
+						String input = this.readLine(pin);
+						textOut.append(input);
+					}
+					if (quit) return;
+			}	
+			while(Thread.currentThread()==reader2){
+				try { 
+					this.wait(100);
+				}catch(InterruptedException e) {}
+				if (pin2.available()!=0) {
+					String input=this.readLine(pin2);
+					textOut.append(input);
+				}
+				if(quit) return;
+			}
+		}catch(Exception e) {
+			textOut.append("\nConsole reports an Internal error.");
+			textOut.append("The error is :" + e);
+		}
+		
+	}
+	
+	public synchronized String readLine(PipedInputStream in) throws IOException{
+		
+		String input="";
+		do
+		{
+			int available = in.available();
+			if (available==0)break;
+			byte b[]=new byte[available];
+			in.read(b);
+			input=input+new String(b,0,b.length);
+		}while(!input.endsWith("\n") && !input.endsWith("\r\n") && !quit) ;
+		return input;
+	}
+
+	public static String getInput() {
+		synchronized(inputWait) {
+			while(true) {
+				try {
+					inputWait.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				String temp = inputText.getText();
+				inputText.setText("");
+			return temp;
+			}
+		}
+	}
+
+	
 }
 
 
