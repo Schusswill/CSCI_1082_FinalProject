@@ -20,8 +20,11 @@ public class Driver {
 	
 		// -------------------------------------- main
 	public static void main(String arg[]) {
-		DisplayThread t1 = new DisplayThread();
-		t1.start();
+//		DisplayThread t1 = new DisplayThread();
+//		t1.start();
+		Display ui = new Display();
+		ui.setVisible(true);
+		Display.update();
 			
 		boolean turn = true;
 		while(game){
@@ -52,8 +55,11 @@ public class Driver {
 	private static void blackTurn() {
 		//TODO
 		System.out.print("It is black's turn \nSelect a piece to move:");
-		Coordinates origin = new Coordinates(0,4);
-		board[0][4].move(origin);
+		int x = Integer.parseInt(Display.getInput());
+		int y = Integer.parseInt(Display.getInput());
+		System.out.println("");
+		Coordinates origin = new Coordinates(x,y);
+		board[x][y].move(origin);
 		
 	}
 
@@ -61,8 +67,11 @@ public class Driver {
 			// TODO Auto-generated method stub
 			
 		System.out.print("It is red's turn \nSelect a piece to move:");
-		Coordinates origin = new Coordinates(7,5);
-		board[7][5].move(origin);
+		int x = Integer.parseInt(Display.getInput());
+		int y = Integer.parseInt(Display.getInput());
+		System.out.println("");
+		Coordinates origin = new Coordinates(x,y);
+		board[x][y].move(origin);
 	}
 	
 	public static Piece[][] getBoard(){
@@ -81,34 +90,34 @@ public class Driver {
 
 	
 
-	static class DisplayThread implements Runnable{
-
-		private Thread t;
-		DisplayThread(){
-			
-		}
-		@Override
-		public void run() {
-			try {
-				Display frame = new Display();
-				frame.setVisible(true);
-				frame.update();
-				while(game) {
-					Thread.sleep(1);
-					frame.update();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();			
-			}
-		
-	}
-
-		public void start() {
-			if (t == null) {
-				t = new Thread (this);
-				t.start();
-			}
-			
-		}
-	}
+//	static class DisplayThread implements Runnable{
+//
+//		private Thread t;
+//		DisplayThread(){
+//			
+//		}
+//		@Override
+//		public void run() {
+//			try {
+//				Display frame = new Display();
+//				frame.setVisible(true);
+//				Display.update();
+//				while(game) {
+//					Thread.sleep(1);
+//					Display.update();
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();			
+//			}
+//		
+//	}
+//
+//		public void start() {
+//			if (t == null) {
+//				t = new Thread (this);
+//				t.start();
+//			}
+//			
+//		}
+//	}
 }
