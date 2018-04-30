@@ -117,7 +117,7 @@ public class Display extends JFrame implements  Runnable	{
 		public void actionPerformed(ActionEvent arg0) {
 			synchronized(inputWait) {
 				textOut.append(inputText.getText());
-				inputWait.notifyAll();
+				inputWait.notify();
 				return;
 			}
 		}

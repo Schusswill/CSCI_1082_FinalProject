@@ -6,7 +6,7 @@ public class Driver {
 	private static Piece[][] board = new Piece[][]{
 	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
 	{null,new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true)},
-	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
+	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Kinged(true),null},
 	{null,null,null,null,null,null,null,null},
 	{null,null,null,null,null,null,null,null},
 	{null,new Piece(false),null,new Piece(false),null,new Piece(false),null,new Piece(false)},
@@ -59,16 +59,22 @@ public class Driver {
 		int y = Integer.parseInt(Display.getInput());
 		System.out.println("");
 		Coordinates origin = new Coordinates(x,y);
-		board[x][y].move(origin);
+		boolean looped = true;
+		while(looped) {
+			looped = board[x][y].move(origin);
+		}
+		
+		
 		
 	}
 
 	private static void redTurn() {
 			// TODO Auto-generated method stub
 			
+		int x,y;
 		System.out.print("It is red's turn \nSelect a piece to move:");
-		int x = Integer.parseInt(Display.getInput());
-		int y = Integer.parseInt(Display.getInput());
+		x = Integer.parseInt(Display.getInput());
+		y = Integer.parseInt(Display.getInput());
 		System.out.println("");
 		Coordinates origin = new Coordinates(x,y);
 		board[x][y].move(origin);
