@@ -56,30 +56,95 @@ public class Piece{
 				kingBlackWhereTo.close();
 				
 				if(kingBlackMove.equals("right")) {			// moves right			
-					int tempX = locX - 1;
-					int tempY = locY + 1;
-					myBoard[locX][locY] = null;
-					System.out.println("King, Black, moved forward right");
-				}
+					if ((myBoard[locX + 1][locY + 1] == null)) {	// is spot open? True, check for opponents color
+						// try catch - index out of bounds possible
+						System.out.println("Right spot open.");
+						if (myBoard [locX + 1][locY +1].getColor() == true) {	// checks if space is opposite color
+							Driver.blackCaptureCnt();				 // capture red chip - Add 1 to Black Counter
+							int tempX = locX + 2;					// change locations to new locations
+							int tempY = locY + 2;
+							myBoard[tempX][tempY] = this;
+							myBoard[locX][locY] = null;
+						System.out.println("Black: Captured red chip and moved forward right.");	
+						}
+						else {												
+							int tempX = locX + 1;						
+							int tempY = locY + 1;
+							myBoard[tempX][tempY] = this;				// change locations to new locations
+							myBoard[locX][locY] = null;					// set old location to null
+							System.out.println("Black: moved forward right.");
+						}
+					}
+				
 				else if(kingBlackMove.equals("left")) {		// moves left
-					int tempX = locX + 1;
-					int tempY = locY + 1;
-					myBoard[locX][locY] = null;
-					System.out.println("King, Black, moved forward left");
+					if ((myBoard[locX + 1][locY - 1] == null)) {	// is spot open? True, check for opponents color
+						// try catch - index out of bounds possible
+						System.out.println("left spot open.");
+						
+						if (myBoard [locX +1][locY -1].getColor() == false) {	// check if chip is red 
+							Driver.blackCaptureCnt(); 					// add to the Black chip counter 
+							int tempX = locX + 2;								
+							int tempY = locY - 2;
+							myBoard[tempX][tempY] = this;					// change location to new location
+							myBoard[locX][locY] = null;							// set old location to null
+							System.out.println("King Black: Captured red chip and moved forward left.");
+							}
+						else {
+							int tempX = locX + 1;						// change location to new locations
+							int tempY = locY - 1;
+							myBoard[tempX][tempY] = this;
+							myBoard[locX][locY] = null;					// set old location to null
+						System.out.println("King Black: moved forward left.");
+							}
+					}
 				}
+			
 				else if(kingBlackMove.equals("back right")) {	// moves back right
-					int tempX = locX + 1;
-					int tempY = locY - 1;
-					myBoard[locX][locY] = null;
-					System.out.println("King, Black, moved backwards right");
+					if ((myBoard[locX - 1][locY + 1] == null)) {	// is spot open? True, check for opponents color
+						// try catch - index out of bounds possible
+						System.out.println("Right spot open.");
+						if (myBoard [locX - 1][locY +1].getColor() == true) {	// checks if space is opposite color
+							Driver.blackCaptureCnt();				 // capture red chip - Add 1 to Black Counter
+							int tempX = locX - 2;					// change locations to new locations
+							int tempY = locY + 2;
+							myBoard[tempX][tempY] = this;
+							myBoard[locX][locY] = null;
+						System.out.println("King Black: Captured red chip and moved forward right.");	
+						}
+						else {												
+							int tempX = locX - 1;						
+							int tempY = locY + 1;
+							myBoard[tempX][tempY] = this;				// change locations to new locations
+							myBoard[locX][locY] = null;					// set old location to null
+							System.out.println("King Black: moved back right.");
+						}
+					}	
 				}
 				else if(kingBlackMove.equals("back left")) {	// moves back left
-					int tempX = locX - 1;
-					int tempY = locY - 1;
-					myBoard[locX][locY] = null;
-					System.out.println("King, Black, moved backwards left");
+					if ((myBoard[locX - 1][locY - 1] == null)) {	// is spot open? True, check for opponents color
+						// try catch - index out of bounds possible
+						System.out.println("left spot open.");
+						
+						if (myBoard [locX - 1][locY - 1].getColor() == false) {	// check if chip is red 
+							Driver.blackCaptureCnt(); 					// add to the Black chip counter 
+							int tempX = locX - 2;								
+							int tempY = locY - 2;
+							myBoard[tempX][tempY] = this;					// change location to new location
+							myBoard[locX][locY] = null;							// set old location to null
+							System.out.println("King Black: Captured red chip and moved forward left.");
+							}
+						else {
+							int tempX = locX - 1;						// change location to new locations
+							int tempY = locY - 1;
+							myBoard[tempX][tempY] = this;
+							myBoard[locX][locY] = null;					// set old location to null
+						System.out.println("King Black: moved back left.");
+							}
+						}
 				}
 			}
+		}
+		
 		//---------------------------------------------------------------------
 			//red King	
 				else if(color == false && king == true) {	
@@ -89,36 +154,94 @@ public class Piece{
 					kingRedWhereTo.close();
 					
 					if(kingRedMove.equals("right")) {			// moves right			
+						if ((myBoard[locX + 1][locY + 1] == null)) {	// is spot open? True, check for opponents color
+							// try catch - index out of bounds possible
+							System.out.println("Right spot open.");
+							if (myBoard [locX + 1][locY +1].getColor() == true) {	// checks if space is opposite color
+								Driver.redCaptureCnt();				 // capture red chip - Add 1 to Black Counter
+								int tempX = locX + 2;					// change locations to new locations
+								int tempY = locY + 2;
+								myBoard[tempX][tempY] = this;
+								myBoard[locX][locY] = null;
+							System.out.println("Red: Captured black chip and moved forward right.");	
+							}
+							else {												
+								int tempX = locX + 1;						
+								int tempY = locY + 1;
+								myBoard[tempX][tempY] = this;				// change locations to new locations
+								myBoard[locX][locY] = null;					// set old location to null
+								System.out.println("Red: moved forward right.");
+							}
+						}
 					
-						System.out.println("King, Red, moved forward right.");
-					}
 					else if(kingRedMove.equals("left")) {		// moves left
-						int tempX = locX + 1;
-						int tempY = locY + 1;
-						myBoard[locX][locY] = null;
-						System.out.println("King, Red, moved forward left.");
+						if ((myBoard[locX + 1][locY - 1] == null)) {	// is spot open? True, check for opponents color
+							// try catch - index out of bounds possible
+							System.out.println("left spot open.");
+							
+							if (myBoard[locX +1][locY -1].getColor() == false) {	// check if chip is red 
+								Driver.redCaptureCnt(); 					// add to the Black chip counter 
+								int tempX = locX + 2;								
+								int tempY = locY - 2;
+								myBoard[tempX][tempY] = this;					// change location to new location
+								myBoard[locX][locY] = null;							// set old location to null
+								System.out.println("King Red: Captured red chip and moved forward left.");
+								}
+							else {
+								int tempX = locX + 1;						// change location to new locations
+								int tempY = locY - 1;
+								myBoard[tempX][tempY] = this;
+								myBoard[locX][locY] = null;					// set old location to null
+							System.out.println("King Red: moved forward left.");
+								}
+						}
 					}
-
+				
 					else if(kingRedMove.equals("back right")) {	// moves back right
-						int tempX = locX + 1;
-						int tempY = locY - 1;
-						myBoard[locX][locY] = null;
-						System.out.println("King, Red, moved backwards right.");
+						if ((myBoard[locX - 1][locY + 1] == null)) {	// is spot open? True, check for opponents color
+							// try catch - index out of bounds possible
+							System.out.println("Back right spot open.");
+							if (myBoard [locX - 1][locY +1].getColor() == true) {	// checks if space is opposite color
+								Driver.blackCaptureCnt();				 // capture red chip - Add 1 to Black Counter
+								int tempX = locX - 2;					// change locations to new locations
+								int tempY = locY + 2;
+								myBoard[tempX][tempY] = this;
+								myBoard[locX][locY] = null;
+							System.out.println("King Red: Captured red chip and moved forward right.");	
+							}
+							else {												
+								int tempX = locX - 1;						
+								int tempY = locY + 1;
+								myBoard[tempX][tempY] = this;				// change locations to new locations
+								myBoard[locX][locY] = null;					// set old location to null
+								System.out.println("King Red: moved back right.");
+							}
+						}	
 					}
 					else if(kingRedMove.equals("back left")) {	// moves back left
-						int tempX = locX - 1;
-						int tempY = locY - 1;
-						myBoard[locX][locY] = null;
-						System.out.println("King, Red, moved backwards right.");
-					}
-					
-					else {
-						int tempX = locX - 1;		// red moves left
-						int tempY = locY + 1;
-						System.out.println("I am Red, moved forward left.");
-						
+						if ((myBoard[locX - 1][locY - 1] == null)) {	// is spot open? True, check for opponents color
+							// try catch - index out of bounds possible
+							System.out.println("Back left spot open.");
+							
+							if (myBoard [locX - 1][locY - 1].getColor() == false) {	// check if chip is red 
+								Driver.redCaptureCnt(); 					// add to the Black chip counter 
+								int tempX = locX - 2;								
+								int tempY = locY - 2;
+								myBoard[tempX][tempY] = this;					// change location to new location
+								myBoard[locX][locY] = null;							// set old location to null
+								System.out.println("King Red: Captured black chip and moved forward left.");
+								}
+							else {
+								int tempX = locX - 1;						// change location to new locations
+								int tempY = locY - 1;
+								myBoard[tempX][tempY] = this;
+								myBoard[locX][locY] = null;					// set old location to null
+							System.out.println("King Red: moved back left.");
+								}
+							}
 					}
 				}
+			}
 			
 			
 			//---------------------------------------------------------------------
@@ -158,15 +281,15 @@ public class Piece{
 								}
 								System.out.println("Black: moved forward right.");
 								}
-							
-					}}
+							}
+						}
 		
 		/*LEFT*/	if(blackMove.equals("left")) {	
 						if ((myBoard[locX + 1][locY + 1] == null)) {	// is spot open? True, check for opponents color
 							// try catch - index out of bounds possible
 							System.out.println("left spot open.");
 							
-							if (myBoard [locX -1][locY +1].getColor() == false) {	// check if chip is red 
+							if (myBoard[locX -1][locY +1].getColor() == false) {	// check if chip is red 
 								Driver.blackCaptureCnt(); 					// add to the Black chip counter 
 								int tempX = locX - 2;								
 								int tempY = locY + 2;
@@ -195,15 +318,6 @@ public class Piece{
 						}
 						}
 				}
-							
-							
-							
-							
-							
-							
-							
-							
-							
 			
 		//---------------------------------------------------------
 			// red chip
@@ -219,7 +333,7 @@ public class Piece{
 						// try catch - index out of bounds possible
 						System.out.println("Right spot open.");
 						
-						if (myBoard [locX - 1][locY +1].getColor() == false) {	// if empty; get the color & capture red chip
+						if (myBoard[locX - 1][locY +1].getColor() == false) {	// if empty; get the color & capture red chip
 							Driver.redCaptureCnt();				 // capture black chip - Add 1 to red Counter
 							int tempX = locX + 2;					// change locations to new locations
 							int tempY = locY + 2;
@@ -249,7 +363,7 @@ public class Piece{
 					if ((myBoard[locX + 1][locY + 1] == null)) {	// is spot open? True, check for opponents color
 						// try catch - index out of bounds possible
 						System.out.println("left spot open.");
-/*fix condition*/		if (myBoard [locX -1][locY +1].getColor() == false) {	// check if chip is red 
+/*fix condition*/		if (myBoard[locX -1][locY +1].getColor() == false) {	// check if chip is red 
 							Driver.redCaptureCnt(); 					// add to the red chip counter 
 							int tempX = locX - 2;								
 							int tempY = locY + 2;
@@ -275,9 +389,9 @@ public class Piece{
 							}
 						}
 					}
-					}
-					}
+				}
 			}
+		}
 }
 
 
