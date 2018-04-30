@@ -57,7 +57,6 @@ public class Driver {
 		
 	}
 
-
 	private static void redTurn() {
 			// TODO Auto-generated method stub
 			
@@ -72,10 +71,12 @@ public class Driver {
 	
 	public static void redCaptureCnt() {
 		redCount++;
+		System.out.println("Red chips catured: " + redCount + ".");
 	}
 	
 	public static void blackCaptureCnt() {
 		blackCount++;
+		System.out.println("Black chips catured: " + blackCount + ".");
 	}
 
 	
