@@ -137,8 +137,7 @@ public class Display extends JFrame implements  Runnable	{
 				if(Driver.board[x][y] == null) {
 					spaces[index].setBackground(Color.WHITE);
 					spaces[index].setIcon(null);
-					System.out.print(" * ");
-					
+//					System.out.print(" * ");		//debug display
 					index++;
 				} 
 				else if(Driver.board[x][y].getKinged()) {
@@ -158,12 +157,12 @@ public class Display extends JFrame implements  Runnable	{
 					
 					if (Driver.board[x][y].getColor()) {
 						spaces[index].setIcon(imageBlack);
-						System.out.print("#");
+//						System.out.print("#");   //debug display
 						index++;
 					}
 					else if (!(Driver.board[x][y].getColor())) {
 						spaces[index].setIcon(imageRed);
-						System.out.print("@");
+//						System.out.print("@");		//debug display
 						index++;
 					}
 				}
