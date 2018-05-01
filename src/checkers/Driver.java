@@ -3,10 +3,10 @@ package checkers;
 public class Driver {
 	
 	
-	private static Piece[][] board = new Piece[][]{
+	static Piece[][] board = new Piece[][]{
 	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
 	{null,new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true)},
-	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Kinged(true),null},
+	{new Piece(true),null,new Piece(true),null,new Piece(true),null,new Piece(true),null},
 	{null,null,null,null,null,null,null,null},
 	{null,null,null,null,null,null,null,null},
 	{null,new Piece(false),null,new Piece(false),null,new Piece(false),null,new Piece(false)},
@@ -54,15 +54,25 @@ public class Driver {
 	
 	private static void blackTurn() {
 		//TODO
-		System.out.print("It is black's turn \nSelect a piece to move:");
-		int x = Integer.parseInt(Display.getInput());
-		int y = Integer.parseInt(Display.getInput());
+//		boolean looped = true;
+//		int x = 0;
+//		int y = 0;
+//		while(looped) {
+//			System.out.print("It is black's turn \nSelect a piece to move:");
+//			x = Integer.parseInt(Display.getInput());
+//			y = Integer.parseInt(Display.getInput());
+//			System.out.println("");
+//			Coordinates origin = new Coordinates(x,y);
+//			looped = board[x][y].move(origin);
+//		}
+		int x,y;
+		System.out.print("It is red's turn \nSelect a piece to move:");
+		x = Integer.parseInt(Display.getInput());
+		y = Integer.parseInt(Display.getInput());
 		System.out.println("");
 		Coordinates origin = new Coordinates(x,y);
-		boolean looped = true;
-		while(looped) {
-			looped = board[x][y].move(origin);
-		}
+		board[y][x].move(origin);
+		Display.update();
 		
 		
 		
@@ -77,7 +87,20 @@ public class Driver {
 		y = Integer.parseInt(Display.getInput());
 		System.out.println("");
 		Coordinates origin = new Coordinates(x,y);
-		board[x][y].move(origin);
+		board[y][x].move(origin);
+		Display.update();
+		
+//		synchronized(Display.inputWait) {
+//			while(true) {
+//				try {
+//					Display.inputWait.wait();
+//					break;
+//				}catch(Exception e){
+//					System.out.println("wait Error");
+//				}	
+//			}
+//			
+//		}
 	}
 	
 	public static Piece[][] getBoard(){

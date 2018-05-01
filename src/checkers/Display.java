@@ -28,12 +28,12 @@ public class Display extends JFrame implements  Runnable	{
 //		{null,new Piece(false),null,new Piece(false),null,new Piece(false),null,new Piece(false)}
 //	};
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private static JPanel contentPane;
 	private JPanel boardPane;
 	private static JLabel[] spaces = new JLabel[64];
 	private static JTextField inputText = new JTextField();
 	static JTextArea textOut;
-	private  static Object inputWait = new Object();
+	static Object inputWait = new Object();
 	
 	private Thread reader;
 	private Thread reader2;
@@ -126,7 +126,7 @@ public class Display extends JFrame implements  Runnable	{
 
 	
 	public static void update() {
-		Piece[][] myBoard = Driver.getBoard();
+//		Piece[][] myBoard = Driver.getBoard();
 		ImageIcon imageBlack = new ImageIcon("SRC\\Images\\BlackPiece.png");
 		ImageIcon imageRed = new ImageIcon("SRC\\Images\\RedPiece.png");
 		ImageIcon imageKingedRed = new ImageIcon("SRC\\Images\\kingedRed.png");
@@ -134,20 +134,21 @@ public class Display extends JFrame implements  Runnable	{
 		int index = 0;
 		for(int x = 0; x < 8;x++) {
 			for(int y = 0; y < 8; y++) {
-				if(myBoard[x][y] == null) {
+				if(Driver.board[x][y] == null) {
 					spaces[index].setBackground(Color.WHITE);
 					spaces[index].setIcon(null);
+					System.out.print(" * ");
 					
 					index++;
 				} 
-				else if(myBoard[x][y] instanceof Kinged) {
+				else if(Driver.board[x][y].getKinged()) {
 					
-					if (myBoard[x][y].getColor()) {
+					if (Driver.board[x][y].getColor()) {
 						spaces[index].setIcon(imageKingedBlack);
 						
 						index++;
 					}
-					else if (!(myBoard[x][y].getColor())) {
+					else if (!(Driver.board[x][y].getColor())) {
 						spaces[index].setIcon(imageKingedRed);
 						
 						index++;
@@ -155,19 +156,23 @@ public class Display extends JFrame implements  Runnable	{
 					
 				}else {
 					
-					if (myBoard[x][y].getColor()) {
+					if (Driver.board[x][y].getColor()) {
 						spaces[index].setIcon(imageBlack);
-						
+						System.out.print("#");
 						index++;
 					}
-					else if (!(myBoard[x][y].getColor())) {
+					else if (!(Driver.board[x][y].getColor())) {
 						spaces[index].setIcon(imageRed);
-						
+						System.out.print("@");
 						index++;
 					}
 				}
 			}
+			System.out.print("\n");
 		}
+		
+		contentPane.validate();
+		contentPane.repaint();
 	}
 
 
@@ -216,19 +221,21 @@ public class Display extends JFrame implements  Runnable	{
 	}
 
 	public static String getInput() {
+		//TODO
 		synchronized(inputWait) {
 			while(true) {
 				try {
 					inputWait.wait();
+					String temp = inputText.getText();
+					inputText.setText("");
+					return temp;
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				String temp = inputText.getText();
-				inputText.setText("");
-			return temp;
+				return "error";
 			}
 		}
+		
 	}
 
 	
