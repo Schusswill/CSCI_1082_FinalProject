@@ -43,45 +43,71 @@ public class Piece implements Cloneable{
 		while(true) {
 			System.out.println("moveing left or right");
 			String buffer = Display.getInput();
-			
-			if(buffer.equals("left") || buffer.equals("Left")) {
-				System.out.println("Up or down");
-				buffer = Display.getInput();
-				if (buffer.equals("up") || buffer.equals("Up")) {
-					direction = 1;
-					break;
+			if(this.kinged) {
+				if(buffer.equals("left") || buffer.equals("Left")) {
+					System.out.println("Up or down");
+					buffer = Display.getInput();
+					if (buffer.equals("up") || buffer.equals("Up")) {
+						direction = 1;
+						break;
+					}
+					else if (buffer.equals("down") || buffer.equals("Down")) {
+						direction = 2;
+						break;
+					}
+					else if (buffer.equals("exit") || buffer.equals("Exit")) {
+						return true;
+					}
+					else{
+						System.out.println("Invalid direction");
+					}
 				}
-				else if (buffer.equals("down") || buffer.equals("Down")) {
-					direction = 2;
-					break;
+				else if(buffer.equals("right") || buffer.equals("Right")) {
+					System.out.println("Up or down");
+					buffer = Display.getInput();
+					if (buffer.equals("up") || buffer.equals("Up")) {
+						direction = 0;
+						break;
+					}
+					else if (buffer.equals("down") || buffer.equals("Down")) {
+						direction = 3;
+						break;
+					}
+					else if (buffer.equals("exit") || buffer.equals("Exit")) {
+						return true;
+					}
+					else{
+						System.out.println("Invalid direction");
+					}
 				}
 				else if (buffer.equals("exit") || buffer.equals("Exit")) {
 					return true;
 				}
-				else{
-					System.out.println("Invalid direction");
-				}
 			}
-			else if(buffer.equals("right") || buffer.equals("Right")) {
-				System.out.println("Up or down");
-				buffer = Display.getInput();
-				if (buffer.equals("up") || buffer.equals("Up")) {
-					direction = 0;
-					break;
+			else {
+				if(buffer.equals("left") || buffer.equals("Left")) {
+					if (this.color) {
+						direction = 2;
+						break;
+					}
+					else {
+						direction = 1;
+						break;
+					}
 				}
-				else if (buffer.equals("down") || buffer.equals("Down")) {
-					direction = 3;
-					break;
+				else if(buffer.equals("right") || buffer.equals("Right")) {
+					if(this.color) {
+						direction = 3;
+						break;
+					}
+					else {
+						direction = 0;
+						break;
+					}
 				}
-				else if (buffer.equals("exit") || buffer.equals("Exit")) {
+				else if(buffer.equals("exit")||buffer.equals("Exit")) {
 					return true;
 				}
-				else{
-					System.out.println("Invalid direction");
-				}
-			}
-			else if (buffer.equals("exit") || buffer.equals("Exit")) {
-				return true;
 			}
 		}	
 			
@@ -115,7 +141,6 @@ public class Piece implements Cloneable{
 	}
 	
 	private Boolean jumpPiece(Coordinates jumped) {
-			// TODO Auto-generated method stub
 //		Piece[][] myBoard = Driver.getBoard();
 			Coordinates destination = whereTo(jumped);
 			if (destination.locX > 7 || destination.locY > 7 || destination.locX < 0 || destination.locY < 0) {
@@ -178,24 +203,3 @@ public class Piece implements Cloneable{
 		
 	}
 }
-
-
-		
-		
-		
-						
-		
-
-							
-							
-		
-							
-							
-		
-			
-		
-							
-						
-						
-
-			

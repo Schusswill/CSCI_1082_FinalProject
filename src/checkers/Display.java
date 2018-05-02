@@ -167,7 +167,7 @@ public class Display extends JFrame implements  Runnable	{
 					}
 				}
 			}
-			System.out.print("\n");
+//			System.out.print("\n"); //debug display
 		}
 		
 		contentPane.validate();
@@ -227,6 +227,7 @@ public class Display extends JFrame implements  Runnable	{
 					inputWait.wait();
 					String temp = inputText.getText();
 					inputText.setText("");
+					textOut.append("\n");
 					return temp;
 				} catch (InterruptedException e) {
 					e.printStackTrace();
