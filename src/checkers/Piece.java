@@ -41,7 +41,7 @@ public class Piece implements Cloneable{
 		
 		
 		while(true) {
-			System.out.println("moveing left or right");
+			System.out.println("left or right");
 			String buffer = Display.getInput();
 			if(this.kinged) {
 				if(buffer.equals("left") || buffer.equals("Left")) {

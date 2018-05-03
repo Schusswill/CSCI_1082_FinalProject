@@ -69,11 +69,12 @@ public class Driver {
 				continue;
 			}
 			if (0>x || x>7 || 0>y || y>7) {
-				System.out.println("Please select a peice on the board");
+				System.out.println("Please select a space on the board");
 				continue;
 			}
 			if (board[y][x] == null) {
 				System.out.println("there is no piece on that space");
+				continue;
 			}
 			if (!(board[y][x].getColor())) {
 				System.out.println("You can't move your oponents pieces");
@@ -103,11 +104,12 @@ public class Driver {
 				continue;
 			}		
 			if (0>x || x>7 || 0>y || y>7) {
-				System.out.println("Please select a peice on the board");
+				System.out.println("Please select a space on the board");
 				continue;
 			}
 			if (board[y][x] == null) {
 				System.out.println("there is no piece on that space");
+				continue;
 			}
 			if (board[y][x].getColor()) {
 				System.out.println("You can't move your oponents pieces");
