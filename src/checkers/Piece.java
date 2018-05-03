@@ -150,9 +150,9 @@ public class Piece implements Cloneable{
 			
 			if (Driver.board[destination.locY][destination.locX] == null) {
 				if (this.color) {
-					Driver.blackCaptureCnt();
-				}else {
 					Driver.redCaptureCnt();
+				}else {
+					Driver.blackCaptureCnt();
 				}
 				Driver.board[jumped.locY][jumped.locX] = null;
 				Driver.board[destination.locY][destination.locX] = this;

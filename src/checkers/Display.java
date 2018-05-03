@@ -185,6 +185,7 @@ public class Display extends JFrame implements  Runnable	{
 					if (pin.available()!=0) {
 						String input = this.readLine(pin);
 						textOut.append(input);
+						textOut.setCaretPosition(textOut.getDocument().getLength());
 					}
 					if (quit) return;
 			}	
@@ -195,6 +196,7 @@ public class Display extends JFrame implements  Runnable	{
 				if (pin2.available()!=0) {
 					String input=this.readLine(pin2);
 					textOut.append(input);
+					textOut.setCaretPosition(textOut.getDocument().getLength());
 				}
 				if(quit) return;
 			}

@@ -20,8 +20,6 @@ public class Driver {
 	
 		// -------------------------------------- main
 	public static void main(String arg[]) {
-//		DisplayThread t1 = new DisplayThread();
-//		t1.start();
 		Display ui = new Display();
 		ui.setVisible(true);
 		Display.update();
@@ -43,8 +41,11 @@ public class Driver {
 			}
 			
 			if (redCount == 9 || blackCount ==9) {
-				System.out.println("Game over");
-				//TODO 
+				System.out.println("Red wins");
+				game = false;
+			}
+			else if(redCount == 9) {
+				System.out.println("Black wins");
 				game = false;
 			}
 		}
@@ -52,55 +53,71 @@ public class Driver {
 	}
 		
 	
+	//runs on black's turn and facilitates that
 	private static void blackTurn() {
-		//TODO
-//		boolean looped = true;
-//		int x = 0;
-//		int y = 0;
-//		while(looped) {
-//			System.out.print("It is black's turn \nSelect a piece to move:");
-//			x = Integer.parseInt(Display.getInput());
-//			y = Integer.parseInt(Display.getInput());
-//			System.out.println("");
-//			Coordinates origin = new Coordinates(x,y);
-//			looped = board[x][y].move(origin);
-//		}
 		int x,y;
-		System.out.print("It is red's turn \nSelect a piece to move:");
-		x = Integer.parseInt(Display.getInput());
-		y = Integer.parseInt(Display.getInput());
+		System.out.println("It is black's turn");
+		boolean looping = true;
+		while(looping) {
+			try {
+				System.out.print("Select a piece to move. \nX: ");
+				x = Integer.parseInt(Display.getInput());
+				System.out.print("Y: ");
+				y = Integer.parseInt(Display.getInput());
+			}catch (NumberFormatException e){
+				System.out.println("Please enter a number.");
+				continue;
+			}
+			if (0>x || x>7 || 0>y || y>7) {
+				System.out.println("Please select a peice on the board");
+				continue;
+			}
+			if (board[y][x] == null) {
+				System.out.println("there is no piece on that space");
+			}
+			if (!(board[y][x].getColor())) {
+				System.out.println("You can't move your oponents pieces");
+				continue;
+			}
+			Coordinates origin = new Coordinates(x,y);
+			looping = board[y][x].move(origin);
+			Display.update();
+		}
 		System.out.println("");
-		Coordinates origin = new Coordinates(x,y);
-		board[y][x].move(origin);
-		Display.update();
-		
-		
-		
 	}
-
-	private static void redTurn() {
-			// TODO Auto-generated method stub
-			
+	
+	
+	//runs on red's turn and facilitates that
+	private static void redTurn() {		
 		int x,y;
-		System.out.print("It is red's turn \nSelect a piece to move:");
-		x = Integer.parseInt(Display.getInput());
-		y = Integer.parseInt(Display.getInput());
+		System.out.println("It is red's turn");
+		boolean looping = true;
+		while(looping) {
+			try {
+				System.out.print("Select a piece to move. \nX: ");
+				x = Integer.parseInt(Display.getInput());
+				System.out.print("Y: ");
+				y = Integer.parseInt(Display.getInput());
+			}catch (NumberFormatException e){
+				System.out.println("Please enter a number.");
+				continue;
+			}		
+			if (0>x || x>7 || 0>y || y>7) {
+				System.out.println("Please select a peice on the board");
+				continue;
+			}
+			if (board[y][x] == null) {
+				System.out.println("there is no piece on that space");
+			}
+			if (board[y][x].getColor()) {
+				System.out.println("You can't move your oponents pieces");
+				continue;
+			}
+			Coordinates origin = new Coordinates(x,y);
+			looping = board[y][x].move(origin);
+			Display.update();
+		}
 		System.out.println("");
-		Coordinates origin = new Coordinates(x,y);
-		board[y][x].move(origin);
-		Display.update();
-		
-//		synchronized(Display.inputWait) {
-//			while(true) {
-//				try {
-//					Display.inputWait.wait();
-//					break;
-//				}catch(Exception e){
-//					System.out.println("wait Error");
-//				}	
-//			}
-//			
-//		}
 	}
 	
 	public static Piece[][] getBoard(){
@@ -116,37 +133,4 @@ public class Driver {
 		blackCount++;
 		System.out.println("Black chips catured: " + blackCount + ".");
 	}
-
-	
-
-//	static class DisplayThread implements Runnable{
-//
-//		private Thread t;
-//		DisplayThread(){
-//			
-//		}
-//		@Override
-//		public void run() {
-//			try {
-//				Display frame = new Display();
-//				frame.setVisible(true);
-//				Display.update();
-//				while(game) {
-//					Thread.sleep(1);
-//					Display.update();
-//				}
-//			} catch (Exception e) {
-//				e.printStackTrace();			
-//			}
-//		
-//	}
-//
-//		public void start() {
-//			if (t == null) {
-//				t = new Thread (this);
-//				t.start();
-//			}
-//			
-//		}
-//	}
 }
